@@ -44,9 +44,12 @@ set scrolloff=3
 set showmatch
 set matchtime=5
 set cindent 
-
-
+" 在复制/粘贴过程中保持缩进
+set pastetoggle=<F2>
 filetype on
+
+
+lua require('key-bindings')
 
 
 " quickfix模式
@@ -59,6 +62,7 @@ set completeopt=preview,menu
 "set clipboard+=unnamed
 "自动保存
 set autowrite
+set autowriteall
 "set ruler                   " 打开状态栏标尺
 "set cursorline              " 突出显示当前行
 set magic                   " 设置魔术
@@ -94,25 +98,6 @@ endif
 
 
 
-
-
-"golang
-"Processing... % (ctrl+c to stop)
-let g:fencview_autodetect=0
-let g:go_version_warning = 0
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go']  }
-let g:go_fmt_fail_silently = 1
-set rtp+=$GOROOT/misc/vim
-
-
 "将tab替换为空格
 nmap tt :%s/\t/    /g<CR>
 
@@ -121,7 +106,7 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'preservim/nerdtree'
+Plug 'scrooloose/nerdtree'  " Famous file explorer plugin.
 Plug 'Valloric/YouCompleteMe'
 Plug 'Yggdroot/indentLine'
 Plug 'dracula/vim'
@@ -132,7 +117,15 @@ Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
 Plug 'Chiel92/vim-autoformat'
 Plug 'posva/vim-vue'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  "Fuzzy search files/buffers etc, Ctrl-p.
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' } "All-in-one code completion plugin.
+if has("nvim")
+  Plug 'nvim-treesitter/nvim-treesitter'
+else " vim   
+  Plug 'hit9/vim-go-syntax' "Fork from vim-go for syntax highlighting only.
+endif
 call plug#end()
 
 " vim-airline
@@ -167,23 +160,82 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 "窗口大小"
 " let NERDTreeWinSize=25
 " autocmd vimenter * NERDTree  "自动开启Nerdtree
-let g:NERDTreeWinSize = 25 "设定 NERDTree 视窗大小
-let NERDTreeShowBookmarks=1  " 开启Nerdtree时自动显示Bookmarks
+" let g:NERDTreeWinSize = 25 "设定 NERDTree 视窗大小
+" let NERDTreeShowBookmarks=1  " 开启Nerdtree时自动显示Bookmarks
 "打开vim时如果没有文件自动打开NERDTree
 " autocmd vimenter * if !argc()|NERDTree|endif
 "当NERDTree为剩下的唯一窗口时自动关闭
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " 设置树的显示图标
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
-let NERDTreeIgnore = ['\.pyc$']  " 过滤所有.pyc文件不显示
-let g:NERDTreeShowLineNumbers=0 " 是否显示行号
-let g:NERDTreeHidden=0     "不显示隐藏文件
+" let g:NERDTreeDirArrowExpandable = '+'
+" let g:NERDTreeDirArrowCollapsible = '-'
+" let NERDTreeIgnore = ['\.pyc$']  " 过滤所有.pyc文件不显示
+" let g:NERDTreeShowLineNumbers=0 " 是否显示行号
+" let g:NERDTreeHidden=0     "不显示隐藏文件
+"Making it prettier
+" let NERDTreeMinimalUI = 1
+"let NERDTreeDirArrows = 1
+" nnoremap <F3> :NERDTreeToggle<CR> 
+"开启/关闭nerdtree快捷键
+"Plugin :: scrooloose/nerdtree ------------------------------------------------ {{{
+autocmd vimenter * NERDTree  "自动开启Nerdtree
+"let g:NERDTreeWinSize = 25 "设定 NERDTree 视窗大小
+"开启/关闭nerdtree快捷键
+map <C-f> :NERDTreeToggle<CR>
+"let NERDTreeShowBookmarks=1  " 开启Nerdtree时自动显示Bookmarks
+"打开vim时如果没有文件自动打开NERDTree
+autocmd vimenter * if !argc()|NERDTree|endif
+"当NERDTree为剩下的唯一窗口时自动关闭
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"设置树的显示图标
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+" 过滤: 所有指定文件和文件夹不显示
+let NERDTreeIgnore = ['\.pyc$', '\.swp', '\.swo', '\.vscode', '__pycache__']
+" 是否显示行号
+"let g:NERDTreeShowLineNumbers=1
+" 不显示隐藏文件 
+let g:NERDTreeHidden= 0
 "Making it prettier
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-nnoremap <F3> :NERDTreeToggle<CR> 
-"开启/关闭nerdtree快捷键
+
+map <F3> :NERDTreeMirror<CR>
+map <F3> :NERDTreeToggle<CR>
+
+" End Plugin :: scrooloose/nerdtree ----------------------------------------- }}}
+
+"Fold
+set nofoldenable
+set foldlevelstart=99
+set foldmethod=indent
+set foldcolumn=0 "number of columns showing the foldlevels on the left sidebar.
+set foldlevel=0
+set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo  "Which commands trigger auto-unfold
+" 设置为自动关闭折叠  
+set foldclose=all  "Close all folds (which level>foldlevel) automatically when cursor leaves.
+" 用空格键来开关折叠
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+autocmd FileType c,go,python,javascript,bitproto,protobuf setlocal foldenable "Enable folding for programming purpose.
+
+
+
+"golang
+"Processing... % (ctrl+c to stop)
+let g:fencview_autodetect=0
+let g:go_version_warning = 0
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go']  }
+let g:go_fmt_fail_silently = 1
+set rtp+=$GOROOT/misc/vim
+
 
 
 " 主题预览配置
@@ -204,6 +256,9 @@ let g:molokai_original = 1
 let g:molokai_original = 1
 
 " vim-godef 配置
+" go 函数
+autocmd FileType go nnoremap <buffer> gd :call GodefUnderCursor() <cr>
+autocmd FileType go nnoremap <buffer> <C-]> :call GodefUnderCursor() <cr>
 let g:godef_split=3  "左右打开新窗口的时候
 let g:godef_same_file_in_same_window=1 "函数在同一个文件中时不需要打开新窗口
 
