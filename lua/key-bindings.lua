@@ -5,7 +5,7 @@
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
-vim.g.encoding = "UTF-8"
+
 -- leader key 为空
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -92,3 +92,5 @@ map('v', 'p', '"_dP', opt)
 map('n', 'q', ':q<CR>', opt)
 map('n', 'qq', ':q!<CR>', opt)
 map('n', 'Q', ':qa!<CR>', opt)
+
+map("n", "gp", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", {noremap=true})
