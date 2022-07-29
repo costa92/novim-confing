@@ -8,6 +8,7 @@ local paccker_bootstrap
 -- 参考 https://github.com/zlongCoding/nvim/blob/main/lua/plugins.lua
 -- https://learnku.com/articles/68258
 -- https://www.lunarvim.org/plugins/02-extra-plugins.html#rnvimr
+-- https://github.com/lxyoucan/nvim/blob/main/lua/plugins.lua
 
 if fn.empty(fn.glob(install_path)) > 0 then
     vim.notify("正在安装Pakcer.nvim，请稍后...")
