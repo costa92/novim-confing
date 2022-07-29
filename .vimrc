@@ -1,89 +1,21 @@
-set sw=4
-set ts=4
-set et
-set smarttab
-set smartindent
-set lbr
-set fo+=mB
-set sm
-set selection=inclusive
-set wildmenu
-set mousemodel=popup
-set nu
-set expandtab
-set nocp
-set ru
-set tabstop=4
+" 基础
+lua require('basic')
 
-set shiftwidth=4
-
-set autoindent  "自动对齐
-
-set linespace=0
-" 增强模式中的命令行自动完成操作
-set wildmenu
-" 使回格键（backspace）正常处理indent, eol, start等
-set backspace=2
-" 允许backspace和光标键跨越行边界
-set whichwrap+=<,>,h,l
-" 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
-set mouse=a
-set selection=exclusive
-set selectmode=mouse,key
-" 通过使用: commands命令，告诉我们文件的哪一行被改变过
-set report=0
-" 在被分割的窗口间显示空白，便于阅读
-set fillchars=vert:\ ,stl:\ ,stlnc:\
-" 高亮显示匹配的括号
-set showmatch
-" 匹配括号高亮的时间（单位是十分之一秒）
-set matchtime=1
-" 光标移动到buffer的顶部和底部时保持3行距离
-set scrolloff=3
-
-set showmatch
-set matchtime=5
-set cindent 
-" 在复制/粘贴过程中保持缩进
-set pastetoggle=<F2>
-filetype on
-
-
+" Backup
+" 禁止生成临时文件
+set noswapfile          " disable temp files
+set nobackup
+set nowritebackup
+" 不要使用vi的键盘模式，而是vim自己的
+set nocompatible
+" 快捷键
 lua require('key-bindings')
-
 
 " quickfix模式
 autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
-"代码补全
-set completeopt=preview,menu
+
 "允许插件
 "filetype plugin on
-"共享剪贴板
-"set clipboard+=unnamed
-"自动保存
-set autowrite
-set autowriteall
-"set ruler                   " 打开状态栏标尺
-"set cursorline              " 突出显示当前行
-set magic                   " 设置魔术
-set guioptions-=T           " 隐藏工具栏
-set guioptions-=m           " 隐藏菜单栏
-""set foldcolumn=0
-""set foldmethod=indent
-""set foldlevel=3
-" 不要使用vi的键盘模式，而是vim自己的
-set nocompatible
-" 去掉输入错误的提示声音
-set noeb
-" 在处理未保存或只读文件的时候，弹出确认
-set confirm
-"禁止生成临时文件
-set nobackup
-set noswapfile
-"搜索忽略大小写
-set ignorecase
-
-syntax on
 
 if has('gui_running') 
     set guioptions-=T  " no toolbar
@@ -96,10 +28,10 @@ if has('gui_running')
   endif
 endif
 
-
-
 "将tab替换为空格
 nmap tt :%s/\t/    /g<CR>
+
+lua require('plugins')
 
 call plug#begin()
 " 这里写上需要安装的插键
@@ -110,19 +42,18 @@ Plug 'scrooloose/nerdtree'  " Famous file explorer plugin.
 Plug 'Valloric/YouCompleteMe'
 Plug 'Yggdroot/indentLine'
 Plug 'dracula/vim'
-Plug 'fatih/vim-go'
 Plug 'jreybert/vimagit'
 Plug 'dgryski/vim-godef'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
+
 Plug 'Chiel92/vim-autoformat'
 Plug 'posva/vim-vue'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  "Fuzzy search files/buffers etc, Ctrl-p.
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } "All-in-one code completion plugin.
 if has("nvim")
-  Plug 'nvim-treesitter/nvim-treesitter'
+
 else " vim   
   Plug 'hit9/vim-go-syntax' "Fork from vim-go for syntax highlighting only.
 endif
