@@ -38,6 +38,8 @@ nmap tt :%s/\t/    /g<CR>
 lua require('plugins')
 lua require('plugin-config.nvim-treesitter')
 lua require('plugin-config.comment')
+lua require('plugin-config.telescope')
+
 call plug#begin()
 " 这里写上需要安装的插键
 Plug 'tpope/vim-sensible'

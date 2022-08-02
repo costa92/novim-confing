@@ -126,6 +126,44 @@ pluginKeys.telescopeList = {
   },
 }
 
+
+-- Telescope
+-- map("n", "<C-p>", ":Telescope find_files<CR>", opt)
+-- map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
+--
+map("n", "<leader>fm", ":Telescope marks <CR>", opt)
+map("n", "<leader>fb", ":Telescope buffers <CR>", opt)
+map("n", "<leader>ff", ":Telescope find_files <CR>", opt)
+map("n", "<leader>fa", ":Telescope find_files follow=true no_ignore=true hidden=true <CR>", opt)
+map("n", "<leader>cm", ":Telescope git_commits <CR>", opt)
+map("n", "<leader>gt", ":Telescope git_status <CR>", opt)
+map("n", "<leader>fh", ":Telescope help_tags <CR>", opt)
+map("n", "<leader>fw", ":Telescope live_grep <CR>", opt)
+map("n", "<leader>fo", ":Telescope oldfiles <CR>", opt)
+map("n", "<leader>fp", ":Telescope projects<CR>", opt)
+--  map("n", "<leader>th", ":Telescope themes <CR>", opt)
+map("n", "<leader>3", "<cmd>Vista!!<CR>", opt)
+
+-- Telescope 列表中 插入模式快捷键
+pluginKeys.telescopeList = {
+    i = {
+        -- 上下移动
+        ["<C-j>"] = "move_selection_next",
+        ["<C-k>"] = "move_selection_previous",
+        ["<C-n>"] = "move_selection_next",
+        ["<C-p>"] = "move_selection_previous",
+        -- 历史记录
+        ["<Down>"] = "cycle_history_next",
+        ["<Up>"] = "cycle_history_prev",
+        -- 关闭窗口
+        -- ["<esc>"] = actions.close,
+        ["<C-c>"] = "close",
+        -- 预览窗口上下滚动
+        ["<C-u>"] = "preview_scrolling_up",
+        ["<C-d>"] = "preview_scrolling_down"
+    }
+}
+
 -- 代码注释插件
 -- see ./lua/plugin-config/comment.lua
 pluginKeys.comment = {
