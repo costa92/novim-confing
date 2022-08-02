@@ -96,6 +96,12 @@ map('n', 'Q', ':qa!<CR>', opt)
 -- 插件快捷键
 local pluginKeys = {}
 
+map("n", "gd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", opt)
+map("n", "gi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", opt)
+map("n", "gq", "<cmd>lua require('goto-preview').close_all_win()<CR>", opt)
+map("n", "gr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", opt)
+
+
 -- Telescope
 map("n", "<C-p>", ":Telescope find_files<CR>", opt)
 map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
@@ -120,4 +126,25 @@ pluginKeys.telescopeList = {
   },
 }
 
-map("n", "gp", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", {noremap=true})
+-- 代码注释插件
+-- see ./lua/plugin-config/comment.lua
+pluginKeys.comment = {
+    -- Normal 模式快捷键
+    toggler = {
+        line = ",t",
+        block = ",tt"
+    },
+    -- Visual 模式
+    opleader = {
+        line = ",l",
+        block = ",ll"
+    }
+}
+
+-- ctrl + /
+map("n", "<C-_>", ",t", {noremap = false})
+map("v", "<C-_>", ",t", {noremap = false})
+-- map("i", "<C-_>", ",c", { noremap = false })
+
+
+return pluginKeys

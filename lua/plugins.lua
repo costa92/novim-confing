@@ -70,6 +70,15 @@ packer.startup({
                 "kyazdani42/nvim-web-devicons"
             }
         }
+        -- //引用的方法使用弹框显示，而不是跳转tab
+        use({
+            "rmagatti/goto-preview",
+            config = function()
+              require("goto-preview").setup {}
+            end
+        })
+        -- Comment 注释
+        use("numToStr/Comment.nvim")
         -- 加速文件搜索速度,如果安装失败需要到插件目录执行make命令手动编译
         -- 用了这个插件以后，貌似更快了(感觉输入更跟手了，可能是心理作用)。但是对于我的小项目感受不是很明显
         use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
