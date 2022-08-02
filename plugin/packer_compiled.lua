@@ -72,48 +72,48 @@ _G.packer_plugins = {
   neoformat = {
     loaded = true,
     path = "/home/hellotalk/.local/share/nvim/site/pack/packer/start/neoformat",
-    url = "https://mirror.ghproxy.com/https://github.com/sbdchd/neoformat"
+    url = "https://github.com/sbdchd/neoformat"
   },
   ["nvim-gps"] = {
     config = { "\27LJ\2\0026\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rnvim-gps\frequire\0" },
     loaded = true,
     path = "/home/hellotalk/.local/share/nvim/site/pack/packer/start/nvim-gps",
-    url = "https://mirror.ghproxy.com/https://github.com/SmiteshP/nvim-gps"
+    url = "https://github.com/SmiteshP/nvim-gps"
   },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/hellotalk/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
-    url = "https://mirror.ghproxy.com/https://github.com/nvim-treesitter/nvim-treesitter"
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/hellotalk/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
-    url = "https://mirror.ghproxy.com/https://github.com/kyazdani42/nvim-web-devicons"
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/hellotalk/.local/share/nvim/site/pack/packer/start/packer.nvim",
-    url = "https://mirror.ghproxy.com/https://github.com/wbthomason/packer.nvim"
+    url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/hellotalk/.local/share/nvim/site/pack/packer/start/plenary.nvim",
-    url = "https://mirror.ghproxy.com/https://github.com/nvim-lua/plenary.nvim"
+    url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
     path = "/home/hellotalk/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
-    url = "https://mirror.ghproxy.com/https://github.com/nvim-telescope/telescope-fzf-native.nvim"
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/hellotalk/.local/share/nvim/site/pack/packer/start/telescope.nvim",
-    url = "https://mirror.ghproxy.com/https://github.com/nvim-telescope/telescope.nvim"
+    url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["vim-go"] = {
     loaded = true,
     path = "/home/hellotalk/.local/share/nvim/site/pack/packer/start/vim-go",
-    url = "https://mirror.ghproxy.com/https://github.com/fatih/vim-go"
+    url = "https://github.com/fatih/vim-go"
   }
 }
 

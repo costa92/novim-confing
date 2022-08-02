@@ -1,15 +1,19 @@
 " 基础
+"
 lua require('basic')
 
 " Backup
 " 禁止生成临时文件
 set noswapfile          " disable temp files
+
 set nobackup
 set nowritebackup
 " 不要使用vi的键盘模式，而是vim自己的
 set nocompatible
 " 快捷键
 lua require('key-bindings')
+" 自动加载
+lua require('autocmds')
 
 " quickfix模式
 autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
@@ -24,7 +28,7 @@ if has('gui_running')
     if has('gui_win32')
        set guifont=DejaVu_Sans_Mono:h10:cANSI
     else
-       set guifont=DejaVu\ Sans\ Mono\ 10
+       set guifont=DejaVu\ :Sans\ Mono\ 10
   endif
 endif
 
@@ -32,6 +36,7 @@ endif
 nmap tt :%s/\t/    /g<CR>
 
 lua require('plugins')
+lua require('plugin-config.nvim-treesitter')
 
 call plug#begin()
 " 这里写上需要安装的插键
@@ -46,7 +51,6 @@ Plug 'jreybert/vimagit'
 Plug 'dgryski/vim-godef'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
-
 Plug 'Chiel92/vim-autoformat'
 Plug 'posva/vim-vue'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  "Fuzzy search files/buffers etc, Ctrl-p.
@@ -112,7 +116,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 autocmd vimenter * NERDTree  "自动开启Nerdtree
 "let g:NERDTreeWinSize = 25 "设定 NERDTree 视窗大小
 "开启/关闭nerdtree快捷键
-map <C-f> :NERDTreeToggle<CR>
+map <C-w> :NERDTreeToggle<CR>
 "let NERDTreeShowBookmarks=1  " 开启Nerdtree时自动显示Bookmarks
 "打开vim时如果没有文件自动打开NERDTree
 autocmd vimenter * if !argc()|NERDTree|endif
