@@ -39,6 +39,18 @@ lua require('plugins')
 lua require('plugin-config.nvim-treesitter')
 lua require('plugin-config.comment')
 lua require('plugin-config.telescope')
+" 格式化插件
+lua require('plugin-config.neoformat')
+lua require('plugin-config.nvim-autopairs')
+lua require('plugin-config.toggleterm')
+
+" -- 内置LSP
+lua require("lsp.setup")
+lua require("lsp.cmp")
+lua require("lsp.ui")
+" -- 格式化
+"-- require("lsp.formatter")
+lua require("lsp.null-ls")
 
 call plug#begin()
 " 这里写上需要安装的插键

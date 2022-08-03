@@ -77,12 +77,67 @@ packer.startup({
               require("goto-preview").setup {}
             end
         })
+       
+        --------------------- LSP --------------------
+      use({"williamboman/nvim-lsp-installer"})
+      -- lsp 加载进度ui 
+      use("j-hui/fidget.nvim")
+       -- use("arkav/lualine-lsp-progress")
+       -- use({ "williamboman/nvim-lsp-installer", commit = "36b44679f7cc73968dbb3b09246798a19f7c14e0" })
+       -- Lspconfig
+       use({"neovim/nvim-lspconfig"})  
+       -- 补全引擎
+       use("hrsh7th/nvim-cmp")
+       -- Snippet 引擎
+       use("hrsh7th/vim-vsnip")
+       -- 补全源
+       use("hrsh7th/cmp-vsnip")
+       use("hrsh7th/cmp-nvim-lsp") -- { name = nvim_lsp }
+        use("hrsh7th/cmp-buffer") -- { name = 'buffer' },
+        use("hrsh7th/cmp-path") -- { name = 'path' }
+        use("hrsh7th/cmp-cmdline") -- { name = 'cmdline' }
+        use("hrsh7th/cmp-nvim-lsp-signature-help") -- { name = 'nvim_lsp_signature_help' }
+
+  
+        -- UI 增强
+        use("onsails/lspkind-nvim")
+        use("tami5/lspsaga.nvim")
+        -- TypeScript 增强
+        use({ "jose-elias-alvarez/nvim-lsp-ts-utils", requires = "nvim-lua/plenary.nvim" })
+        -- Lua 增强
+        use("folke/lua-dev.nvim")  
+        -- JSON 增强
+        use("b0o/schemastore.nvim")
+  
+        use({"jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim"})
+        -- Rust 增强
+        use("simrat39/rust-tools.nvim")
+        use({"michaelb/sniprun", run = "bash ./install.sh"})
+        use("nvim-lua/plenary.nvim")
+        use("windwp/nvim-spectre")
+
+        use("junegunn/fzf.vim")
+        use({ "akinsho/toggleterm.nvim" })
+
+        -- //拼写建议
+        use("f3fora/cmp-spell")
         -- Comment 注释
         use("numToStr/Comment.nvim")
         -- 加速文件搜索速度,如果安装失败需要到插件目录执行make命令手动编译
         -- 用了这个插件以后，貌似更快了(感觉输入更跟手了，可能是心理作用)。但是对于我的小项目感受不是很明显
         use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
-        if packer_bootstrap then
+       
+       -- nvim-autopairs
+       use("windwp/nvim-autopairs")               
+       use("windwp/nvim-ts-autotag")
+       
+        -- 常见编程语言代码段
+        use("rafamadriz/friendly-snippets")
+
+         -- git
+         use({"lewis6991/gitsigns.nvim"})
+  
+       if packer_bootstrap then
             packer.sync()
         end
     end,
