@@ -336,4 +336,12 @@ pluginKeys.mapLSP = function(mapbuf)
   -- mapbuf('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
 end
 
+-- typescript 快捷键
+pluginKeys.mapTsLSP = function(mapbuf)
+  mapbuf("n", "gs", ":TSLspOrganize<CR>", opt)
+  mapbuf("n", "gR", ":TSLspRenameFile<CR>", opt)
+  mapbuf("n", "gi", ":TSLspImportAll<CR>", opt)
+end
+
+
 return pluginKeys
