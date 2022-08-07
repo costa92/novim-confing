@@ -102,6 +102,58 @@ map("n", "gq", "<cmd>lua require('goto-preview').close_all_win()<CR>", opt)
 map("n", "gr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", opt)
 
 
+map("n", "<leader>1", ":NvimTreeToggle <CR>", opt)
+map("n", "<F3>", ":NvimTreeToggle <CR>", opt)
+map("n", "<leader>2", ":NvimTreeFocus <CR>", opt)
+map("n", "<leader>mr", ":NvimTreeRefresh <CR>", opt)
+map("n", "<leader>mf", ":NvimTreeFindFile <CR>", opt)
+-- 列表快捷键
+pluginKeys.nvimTreeList = {
+    -- 打开文件或文件夹
+    {key = {"<CR>", "o", "<2-LeftMouse>"}, action = "edit"},
+    -- v分屏打开文件
+    {key = "v", action = "vsplit"},
+    -- h分屏打开文件
+    {key = "h", action = "split"},
+    -- Ignore (node_modules)
+    {key = "i", action = "toggle_ignored"},
+    -- Hide (dotfiles)
+    {key = ".", action = "toggle_dotfiles"},
+    {key = "R", action = "refresh"},
+    -- 文件操作
+    {key = "a", action = "create"},
+    {key = "d", action = "remove"},
+    {key = "r", action = "rename"},
+    {key = "x", action = "cut"},
+    {key = "c", action = "copy"},
+    {key = "p", action = "paste"},
+    {key = "y", action = "copy_name"},
+    {key = "Y", action = "copy_path"},
+    {key = "gy", action = "copy_absolute_path"},
+    {key = "I", action = "toggle_file_info"},
+    {key = "n", action = "tabnew"},
+    -- 进入下一级
+    {key = {"]"}, action = "cd"},
+    -- 进入上一级
+    {key = {"["}, action = "dir_up"},
+    {key = "s", action = "system_open"}
+}
+
+-- bufferline
+-- 左右Tab切换
+map("n", "<TAB>", ":BufferLineCycleNext<CR>", opt)
+map("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opt)
+-- "moll/vim-bbye" 关闭当前 buffer
+map("n", "<leader>bc", ":Bdelete!<CR>", opt)
+-- 关闭左/右侧标签页
+map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
+map("n", "<leader>bl", ":BufferLineCloseRight<CR>", opt)
+-- 关闭其他标签页
+map("n", "<leader>bo", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>", opt)
+-- 关闭选中标签页
+map("n", "<leader>bp", ":BufferLinePickClose<CR>", opt)
+
+
 -- Telescope
 map("n", "<C-p>", ":Telescope find_files<CR>", opt)
 map("n", "<C-f>", ":Telescope live_grep<CR>", opt)

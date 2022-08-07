@@ -36,6 +36,8 @@ endif
 nmap tt :%s/\t/    /g<CR>
 
 lua require('plugins')
+lua require('plugin-config.nvim-tree')
+lua require('plugin-config.bufferline')
 lua require('plugin-config.nvim-treesitter')
 lua require('plugin-config.comment')
 lua require('plugin-config.telescope')
@@ -57,7 +59,7 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'  " Famous file explorer plugin.
+" Plug 'scrooloose/nerdtree'  " Famous file explorer plugin.
 " Plug 'Valloric/YouCompleteMe'
 Plug 'Yggdroot/indentLine'
 Plug 'dracula/vim'
@@ -127,30 +129,30 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 " nnoremap <F3> :NERDTreeToggle<CR> 
 "开启/关闭nerdtree快捷键
 "Plugin :: scrooloose/nerdtree ------------------------------------------------ {{{
-autocmd vimenter * NERDTree  "自动开启Nerdtree
+" autocmd vimenter * NERDTree  "自动开启Nerdtree
 "let g:NERDTreeWinSize = 25 "设定 NERDTree 视窗大小
 "开启/关闭nerdtree快捷键
-map <C-w> :NERDTreeToggle<CR>
+" map <C-w> :NERDTreeToggle<CR>
 "let NERDTreeShowBookmarks=1  " 开启Nerdtree时自动显示Bookmarks
 "打开vim时如果没有文件自动打开NERDTree
-autocmd vimenter * if !argc()|NERDTree|endif
+" autocmd vimenter * if !argc()|NERDTree|endif
 "当NERDTree为剩下的唯一窗口时自动关闭
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "设置树的显示图标
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+" let g:NERDTreeDirArrowExpandable = '▸'
+" let g:NERDTreeDirArrowCollapsible = '▾'
 " 过滤: 所有指定文件和文件夹不显示
-let NERDTreeIgnore = ['\.pyc$', '\.swp', '\.swo', '\.vscode', '__pycache__']
+" let NERDTreeIgnore = ['\.pyc$', '\.swp', '\.swo', '\.vscode', '__pycache__']
 " 是否显示行号
 "let g:NERDTreeShowLineNumbers=1
 " 不显示隐藏文件 
-let g:NERDTreeHidden= 0
+" let g:NERDTreeHidden= 0
 "Making it prettier
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+" let NERDTreeMinimalUI = 1
+" let NERDTreeDirArrows = 1
 
-map <F3> :NERDTreeMirror<CR>
-map <F3> :NERDTreeToggle<CR>
+" map <F3> :NERDTreeMirror<CR>
+" map <F3> :NERDTreeToggle<CR>
 
 " End Plugin :: scrooloose/nerdtree ----------------------------------------- }}}
 
@@ -248,3 +250,15 @@ let g:Lf_PreviewInPopup = 1
 
 " vue
 let g:vue_pre_processors = ['pug', 'scss']
+
+" terryma/vim-multiple-cursors
+" let g:multi_cursor_use_default_mapping=0
+" Default mapping
+" let g:multi_cursor_start_word_key      = '<C-n>'
+" let g:multi_cursor_select_all_word_key = '<A-n>'
+" let g:multi_cursor_start_key           = 'g<C-n>'
+" let g:multi_cursor_select_all_key      = 'g<A-n>'
+" let g:multi_cursor_next_key            = '<C-n>'
+" let g:multi_cursor_prev_key            = '<C-p>'
+" let g:multi_cursor_skip_key            = '<C-x>'
+" let g:multi_cursor_quit_key            = '<Esc>'

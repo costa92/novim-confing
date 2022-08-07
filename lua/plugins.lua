@@ -48,6 +48,18 @@ packer.startup({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate"
         })
+
+        -- nvim-tree (新增)
+        use {
+          'kyazdani42/nvim-tree.lua',
+          requires = 'kyazdani42/nvim-web-devicons'
+        }
+        -- bufferline (新增)
+        use {
+            'akinsho/bufferline.nvim', 
+            requires = 'kyazdani42/nvim-web-devicons'
+        }
+
         -- 方法聚焦
         use({
             "SmiteshP/nvim-gps",
